@@ -1,0 +1,23 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Warna latar belakang tombol -->
+    <solid android:color="@color/blue" />
+
+    <!-- Corner radius hanya untuk sudut bawah -->
+    <corners
+        android:bottomLeftRadius="24dp"
+        android:bottomRightRadius="24dp"
+        android:topLeftRadius="24dp"
+        android:topRightRadius="24dp" />
+
+    <!-- Opsi tambahan untuk border -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/white" />
+
+    <!-- Padding di dalam tombol -->
+    <padding
+        android:left="12dp"
+        android:top="12dp"
+        android:right="12dp"
+        android:bottom="12dp" />
+</shape>

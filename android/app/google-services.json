@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "64897640078",
+    "project_id": "ticbooking-govtl",
+    "storage_bucket": "ticbooking-govtl.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64897640078:android:f0eabcc7404b1bddfdcbdf",
+        "android_client_info": {
+          "package_name": "com.app.driverticbooking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJf9_swQfEp29hBRsdBcylgLZu9gh-ues"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

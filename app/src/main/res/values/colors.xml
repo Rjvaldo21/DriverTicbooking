@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#007AFF</color>
+    <color name="gray">#B0BEC5</color>
+    <color name="primaryColor">#6200EE</color>
+    <color name="primaryColorDark">#3700B3</color>
+    <color name="blue38">#389FFF</color>
+    <color name="blue22">#225F99</color>
+    <color name="statusBarColor">#3700B3</color>
+    <color name="green">#44C036</color>
+    <color name="gray999">#999797</color>
+    <color name="gray78">#787878</color>
+    <color name="blueF7">#F7FCFF</color>
+    <color name="navyBlue">#003366</color>
+    <color name="grayC9">#C9C9C9</color>
+    <color name="grayaa">#AAAAAA</color>
+</resources>

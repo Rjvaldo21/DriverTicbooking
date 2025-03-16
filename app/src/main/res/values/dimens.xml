@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dimensi untuk header image -->
+    <dimen name="header_image_height">200dp</dimen>
+    <dimen name="card_margin_top">30dp</dimen>
+</resources>
