@@ -131,7 +131,7 @@
                     android:text="Loron"/>
 
                 <TextView
-                    android:id="@+id/tvStartDate"
+                    android:id="@+id/tvStartDatesAlt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="txtStartDate"
@@ -164,7 +164,7 @@
                     android:text="Komesa"/>
 
                 <TextView
-                    android:id="@+id/tvStartTimes"
+                    android:id="@+id/tvStartTimesAlt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="txtStartTime"
@@ -212,7 +212,7 @@
                         app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
-                        android:id="@+id/tvEndDate"
+                        android:id="@+id/tvStartDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="07/09/2025"
@@ -246,7 +246,7 @@
                         tools:ignore="NotSibling" />
 
                     <TextView
-
+                        android:id="@+id/tvEndDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="09/09/2025"

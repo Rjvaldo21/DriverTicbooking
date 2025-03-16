@@ -34,27 +34,22 @@ public class VehicleBooking {
 
     private String status;
 
-    // Metode helper untuk mendapatkan start date (yyyy-MM-dd)
     public String getFormattedStartDate() {
         return formatDate(startTime, "yyyy-MM-dd");
     }
 
-    // Metode helper untuk mendapatkan start time (HH:mm)
     public String getFormattedStartTime() {
         return formatDate(startTime, "HH:mm");
     }
 
-    // Metode helper untuk mendapatkan end date (yyyy-MM-dd)
     public String getFormattedEndDate() {
         return formatDate(endTime, "yyyy-MM-dd");
     }
 
-    // Metode helper untuk mendapatkan end time (HH:mm)
     public String getFormattedEndTime() {
         return formatDate(endTime, "HH:mm");
     }
 
-    // Metode umum untuk memformat string tanggal dengan konversi ke waktu lokal
     private String formatDate(String rawDate, String outputPattern) {
         if (rawDate == null || rawDate.isEmpty()) {
             return "";
@@ -64,7 +59,7 @@ public class VehicleBooking {
             inputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
             SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern, Locale.getDefault());
-            outputFormat.setTimeZone(TimeZone.getDefault());
+            outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
             Date date = inputFormat.parse(rawDate);
             return outputFormat.format(date);
@@ -73,7 +68,6 @@ public class VehicleBooking {
         }
         return "";
     }
-
 
     // Getter
     public int getId() { return id; }

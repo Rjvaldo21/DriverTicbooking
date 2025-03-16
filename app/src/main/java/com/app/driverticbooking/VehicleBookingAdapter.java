@@ -56,6 +56,9 @@ public class VehicleBookingAdapter extends RecyclerView.Adapter<VehicleBookingAd
         setTextView(holder.tvStartDate, booking.getFormattedStartDate());
         setTextView(holder.tvStartTime, booking.getFormattedStartTime());
 
+        setTextView(holder.tvStartDatesAlt, booking.getFormattedStartDate());
+        setTextView(holder.tvStartTimesAlt, booking.getFormattedStartTime());
+
         boolean isExpanded = expandedStates[position];
 
         holder.detailsContainer.setVisibility(isExpanded ? View.GONE : View.VISIBLE);
@@ -117,6 +120,7 @@ public class VehicleBookingAdapter extends RecyclerView.Adapter<VehicleBookingAd
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvPurpose, tvDescription, tvDestination, tvRequesterName, tvDepartement, tvDriverName;
         TextView tvStartTime, tvEndTime, tvStatus, tvStartDate, tvEndDate;
+        TextView tvStartDatesAlt, tvStartTimesAlt;
         ImageView ivChevron, ivMapIcon;
         LinearLayout expandableSection;
         ConstraintLayout detailsContainer;
@@ -133,12 +137,13 @@ public class VehicleBookingAdapter extends RecyclerView.Adapter<VehicleBookingAd
             tvDepartement = itemView.findViewById(R.id.tvDepartement);
             tvDriverName = itemView.findViewById(R.id.tvDriverName);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvStartDatesAlt = itemView.findViewById(R.id.tvStartDatesAlt);
+            tvStartTimesAlt = itemView.findViewById(R.id.tvStartTimesAlt);
             ivChevron = itemView.findViewById(R.id.ivChevron);
             ivMapIcon = itemView.findViewById(R.id.ivMapIcon);
             expandableSection = itemView.findViewById(R.id.expandableSection);
             detailsContainer = itemView.findViewById(R.id.detailsContainer);
 
-// 🔹 Log jika `ivChevron` null
             if (ivChevron == null) {
                 Log.e("ViewHolder", "ivChevron is NULL! Check XML.");
             }
