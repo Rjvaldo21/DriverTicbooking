@@ -18,10 +18,10 @@ public class VehicleBooking {
     private String requesterNameDetails;
 
     @SerializedName("start_time")
-    private String startTime;  // contoh: "2025-02-18T01:13:31Z"
+    private String startTime;
 
     @SerializedName("end_time")
-    private String endTime;    // contoh: "2025-02-18T03:13:32Z"
+    private String endTime;
 
     @SerializedName("purpose_details")
     private PurposeDetails purposeDetails;

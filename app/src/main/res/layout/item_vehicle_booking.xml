@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="txtPurpose"
                 android:textSize="13sp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/inter_semibold"
                 android:maxLines="1"
                 android:ellipsize="end"
                 app:layout_constraintStart_toStartOf="parent"

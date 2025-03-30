@@ -26,6 +26,11 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
+    public void setLoggedIn(boolean isLoggedIn) {
+        editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
+        editor.apply();
+    }
+
     public void saveUserData(String userJson) {
         try {
             JSONObject jsonObject = new JSONObject(userJson);
@@ -48,19 +53,11 @@ public class SessionManager {
     }
 
     public void saveToken(String token) {
-        if (token != null && !token.trim().isEmpty()) {
-            if (!token.startsWith("Token ")) {
-                token = "Token " + token;
-            }
-            editor.putString(KEY_TOKEN, token);
-            editor.putBoolean(KEY_IS_LOGGED_IN, true);
-            editor.apply();
-            Log.d("SessionManager", "🔑 Token disimpan: " + token);
-        } else {
-            Log.e("SessionManager", "❌ Token kosong, tidak disimpan!");
-        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("auth_token", "Token " + token.trim()); // Simpan dengan format yang benar
+        Log.d("DEBUG TOKEN", "Token yang digunakan: [" + token + "]");
+        editor.apply();
     }
-
 
     public void saveUserName(String userName) {
         if (userName != null && !userName.trim().isEmpty()) {
@@ -121,8 +118,8 @@ public class SessionManager {
     }
 
     public String getToken() {
-        String token = sharedPreferences.getString(KEY_TOKEN, "No Token");
-        Log.d("SessionManager", "📌 Token: " + token);
+        String token = sharedPreferences.getString("auth_token", ""); // Ambil token dari SharedPreferences
+        Log.d("DEBUG TOKEN", "Token yang digunakan: [" + token + "]"); // Debugging sebelum return
         return token;
     }
 }

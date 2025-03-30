@@ -7,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @POST("login/")
@@ -17,4 +18,13 @@ public interface ApiService {
 
     @GET("vehicle-bookings/")
     Call<VehicleBookingResponse> getVehicleBookings(@Header("Authorization") String token);
+
+    @GET("executive-meetings/")
+    Call<ExecutiveMeetingResponse> getExecutiveMeetings(@Header("Authorization") String token);
+
+    @GET("notifications/")
+    Call<NotificationResponse> getNotification(
+    @Header("Authorization") String auth,
+    @Query("type") String all
+    );
 }

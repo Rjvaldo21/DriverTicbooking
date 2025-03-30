@@ -1,5 +1,6 @@
 package com.app.driverticbooking;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -45,11 +46,23 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
     private AppBarLayout appBarLayout;
     private CardView cardInfo;
     private LinearLayout toolbarTitleLayout;
+    private Object binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
         ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ImageView notificationIcon = root.findViewById(R.id.notificationIcons);
+        ImageView cardIconRight = root.findViewById(R.id.cardIconRight);
+
+        notificationIcon.setOnClickListener(view -> {
+            startActivity(new Intent(requireContext(), NotificationActivity.class));
+        });
+
+        cardIconRight.setOnClickListener(view -> {
+            startActivity(new Intent(requireContext(), NotificationActivity.class));
+        });
 
         appBarLayout = root.findViewById(R.id.appBarLayout);
         cardInfo = root.findViewById(R.id.cardInfo);
@@ -93,6 +106,42 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
 
         return root;
     }
+
+    private void fetchExecutiveMeetings() {
+        String token = sessionManager.getToken();
+
+        if (token == null || token.isEmpty()) {
+            Toast.makeText(requireContext(), "User not authenticated", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Retrofit retrofit = RetrofitClient.getClient();
+        ApiService apiService = retrofit.create(ApiService.class);
+
+        apiService.getExecutiveMeetings(token).enqueue(new Callback<ExecutiveMeetingResponse>() {
+            @Override
+            public void onResponse(Call<ExecutiveMeetingResponse> call, Response<ExecutiveMeetingResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<ExecutiveMeetingResponse.ExecutiveMeeting> meetings = response.body().getResults();
+
+                    if (!meetings.isEmpty()) {
+                        RecyclerView recyclerExecutiveMeetings = requireView().findViewById(R.id.recyclerExecutiveMeetings);
+                        recyclerExecutiveMeetings.setLayoutManager(new LinearLayoutManager(getContext()));
+                        recyclerExecutiveMeetings.setAdapter(new ExecutiveMeetingAdapter(meetings));
+                    }
+                } else {
+                    Log.e("API Error", "Failed to load executive meetings: " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ExecutiveMeetingResponse> call, Throwable t) {
+                Log.e("API Failure", "Request failed: " + t.getMessage());
+                Toast.makeText(requireContext(), "Failed to load executive meetings: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void fetchBookings(TextView vehicleName, TextView vehicleType, TextView vehicleCapacity, TextView vehicleStatus) {
         String token = sessionManager.getToken();
