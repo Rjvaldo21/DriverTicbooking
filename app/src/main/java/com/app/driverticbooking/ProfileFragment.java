@@ -31,7 +31,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        sessionManager = new SessionManager(getContext());
+        sessionManager = new SessionManager(requireContext());
 
         tvEmail = root.findViewById(R.id.tvEmail);
         cardSubtitle = root.findViewById(R.id.cardSubtitle);
@@ -46,12 +46,10 @@ public class ProfileFragment extends Fragment {
             activity.getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        //method get email
         String userEmail = sessionManager.getEmail();
-        if (userEmail == null || userEmail.trim().isEmpty() || userEmail.equals("No Email")) {
-            userEmail = "Email not available";
-        }
+        Log.d("ProfileFragment", "📤 Email husi session: " + userEmail);
         tvEmail.setText(userEmail);
-        Log.d("ProfileFragment", "📧 Email yang ditampilkan di ProfileFragment: " + userEmail);
 
         String userName = sessionManager.getUserName();
         Log.d("ProfileFragment", "👤 UserName: " + userName);

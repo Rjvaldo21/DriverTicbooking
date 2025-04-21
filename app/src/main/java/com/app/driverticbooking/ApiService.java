@@ -1,7 +1,5 @@
 package com.app.driverticbooking;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -15,6 +13,9 @@ public interface ApiService {
 
     @GET("user/")
     Call<UserResponse> getUserProfile(@Header("Authorization") String token);
+
+    @GET("user/")
+    Call<UserResponse> getUser(@Header("Authorization") String authToken);
 
     @GET("vehicle-bookings/")
     Call<VehicleBookingResponse> getVehicleBookings(@Header("Authorization") String token);

@@ -1,5 +1,4 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,87 +9,88 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
+        android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/collapsingToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        app:titleEnabled="false"
-        android:fitsSystemWindows="true"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        app:contentScrim="@color/navyBlue"
-        app:statusBarScrim="@color/navyBlue">
-
-        <ImageView
-            android:id="@+id/greetingBackground"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_morning"
-            app:layout_collapseMode="parallax"/>
+            android:minHeight="?attr/actionBarSize"
+            app:contentScrim="@color/navyBlue"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:statusBarScrim="@color/navyBlue"
+            app:titleEnabled="false">
 
-        <TextView
-            android:id="@+id/cardSubtitle"
-            android:text="txtUsername"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:fontFamily="@font/inter"
-            android:textSize="14sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="20dp"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:layout_collapseMode="pin">
-
-            <LinearLayout
-                android:id="@+id/toolbarTitleLayout"
+            <ImageView
+                android:id="@+id/greetingBackground"
                 android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_morning"
+                app:layout_collapseMode="parallax" />
+
+            <TextView
+                android:id="@+id/cardSubtitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:titleEnabled="false"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                android:visibility="gone">
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/inter"
+                android:text="txtUsername"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/toolbarTitle"
-                    android:layout_width="0dp"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <LinearLayout
+                    android:id="@+id/toolbarTitleLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:drawableStart="@drawable/tic_logo"
-                    android:drawablePadding="8dp"
-                    android:text="TIC-TIMOR"
-                    android:textSize="20sp"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    app:titleEnabled="false">
 
-                <ImageView
-                    android:id="@+id/notificationIcons"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_notification"
-                    android:contentDescription="Info Icon"
-                    android:layout_gravity="end"/>
+                    <TextView
+                        android:id="@+id/toolbarTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/tic_logo"
+                        android:drawablePadding="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="TIC-TIMOR"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/notificationIcons"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="end"
+                        android:contentDescription="Info Icon"
+                        android:src="@drawable/ic_notification" />
 
-        </androidx.appcompat.widget.Toolbar>
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -100,83 +100,120 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="@dimen/card_margin_top"
-        android:translationY="-10dp"
-        android:elevation="8dp"
-        app:cardCornerRadius="12dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/white"
+        android:elevation="8dp"
+        android:translationY="-10dp"
+        app:cardCornerRadius="12dp"
         app:layout_anchor="@id/appBarLayout"
         app:layout_anchorGravity="bottom">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/cardTitle"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableStart="@drawable/tic_logo"
-            android:drawablePadding="8dp"
-            android:text="TIC-TIMOR"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/cardIconRight"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_notification_tollbar"
-            android:contentDescription="Info Icon"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/cardTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/tic_logo"
+                    android:drawablePadding="8dp"
+                    android:text="TIC-TIMOR"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-    <!--<TextView
-        android:id="@+id/cardSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Motorista, RAVA 4X4!"
-        android:textSize="14sp"
-        android:textColor="@android:color/darker_gray"/>-->
+                <ImageView
+                    android:id="@+id/cardIconRight"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Info Icon"
+                    android:src="@drawable/ic_notification_tollbar" />
 
-        <include layout="@layout/vehicle_details"/>
+            </LinearLayout>
 
-    </LinearLayout>
+            <!--<TextView
+                android:id="@+id/cardSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motorista, RAVA 4X4!"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"/>-->
 
-</androidx.cardview.widget.CardView>
+            <include layout="@layout/vehicle_details" />
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="50dp"
-    android:scrollbars="vertical"
-    android:clipToPadding="false"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:listitem="@layout/item_vehicle_booking"
-    app:layout_constraintTop_toBottomOf="@+id/cardInfo"/>
+        </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerExecutiveMeetings"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:paddingBottom="100dp"
-    android:scrollbars="vertical"
-    tools:listitem="@layout/item_executive_booking"
-    android:layout_below="@id/recyclerView"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <View
+            android:id="@+id/view"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@color/white"
+            app:tabIndicatorColor="@color/navyBlue"
+            app:tabSelectedTextColor="@color/navyBlue"
+            app:tabTextColor="@android:color/darker_gray"
+            app:tabMode="fixed"
+            app:tabGravity="fill">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vehicle"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tab_vehicles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Executive Meeting"/>
+
+        </com.google.android.material.tabs.TabLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+            tools:listitem="@layout/item_vehicle_booking" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerExecutiveMeetings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout"
+            android:paddingBottom="100dp"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/item_executive_booking" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
@@ -40,11 +41,14 @@ import retrofit2.Retrofit;
 public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMapIconClickListener {
 
     private RecyclerView recyclerView;
+    private RecyclerView recyclerExecutiveMeetings;
     private VehicleBookingAdapter adapter;
     private SessionManager sessionManager;
     private TextView cardSubtitle, vehicleName, vehicleType, vehicleCapacity, vehicleStatus;
     private AppBarLayout appBarLayout;
     private CardView cardInfo;
+    private View view;
+    private TabLayout tabLayout;
     private LinearLayout toolbarTitleLayout;
     private Object binding;
 
@@ -65,10 +69,13 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
         });
 
         appBarLayout = root.findViewById(R.id.appBarLayout);
+        view = root.findViewById(R.id.view);
+        tabLayout = root.findViewById(R.id.tabLayout);
         cardInfo = root.findViewById(R.id.cardInfo);
         toolbarTitleLayout = root.findViewById(R.id.toolbarTitleLayout);
         ImageView greetingBackground = root.findViewById(R.id.greetingBackground);
         recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerExecutiveMeetings = root.findViewById(R.id.recyclerExecutiveMeetings);
         cardSubtitle = root.findViewById(R.id.cardSubtitle);
         vehicleName = root.findViewById(R.id.tvVehicleName);
 //        vehicleType = root.findViewById(R.id.tvVehicleType);
@@ -96,12 +103,38 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
                 int totalScrollRange = appBarLayout.getTotalScrollRange();
                 if (Math.abs(verticalOffset) == totalScrollRange) {
                     if (cardInfo != null) cardInfo.setVisibility(View.GONE);
+                    if (view != null) view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.navyBlue));
                     if (toolbarTitleLayout != null) toolbarTitleLayout.setVisibility(View.VISIBLE);
                 } else {
+                    if (view != null) view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white));
                     if (cardInfo != null) cardInfo.setVisibility(View.VISIBLE);
                     if (toolbarTitleLayout != null) toolbarTitleLayout.setVisibility(View.GONE);
                 }
             }
+        });
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                switch (position) {
+                    case 0: // Ruangan
+                        fetchBookings();
+                        recyclerExecutiveMeetings.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        break;
+                    case 1: // Kendaraan
+                        recyclerExecutiveMeetings.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
+                        fetchExecutiveMeetings();
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
         return root;
@@ -125,7 +158,6 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
                     List<ExecutiveMeetingResponse.ExecutiveMeeting> meetings = response.body().getResults();
 
                     if (!meetings.isEmpty()) {
-                        RecyclerView recyclerExecutiveMeetings = requireView().findViewById(R.id.recyclerExecutiveMeetings);
                         recyclerExecutiveMeetings.setLayoutManager(new LinearLayoutManager(getContext()));
                         recyclerExecutiveMeetings.setAdapter(new ExecutiveMeetingAdapter(meetings));
                     }

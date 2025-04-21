@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class LoginResponse {
     private String token;
 
-    @SerializedName("driver_name")
+    @SerializedName("username")
     private String userName;
 
     @SerializedName("email")
@@ -19,5 +19,7 @@ public class LoginResponse {
         return userName;
     }
 
-    public String getEmail(){return email;}
+    public String getEmail() {
+        return email;
+    }
 }
