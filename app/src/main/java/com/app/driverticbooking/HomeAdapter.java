@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MeetingViewHolder> {
-    private List<ExecutiveMeeting> meetings;
+    private List<ExecutiveMeetingResponse.ExecutiveMeeting> meetings;
 
-    public HomeAdapter(List<ExecutiveMeeting> meetings) {
+    public HomeAdapter(List<ExecutiveMeetingResponse.ExecutiveMeeting> meetings) {
         this.meetings = meetings;
     }
 
@@ -27,7 +27,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MeetingViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MeetingViewHolder holder, int position) {
-        ExecutiveMeeting meeting = meetings.get(position);
+        ExecutiveMeetingResponse.ExecutiveMeeting meeting = meetings.get(position);
 
         if (meeting != null) {
             holder.bind(meeting);
@@ -46,26 +46,21 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MeetingViewHol
 
         public MeetingViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            // **Pastikan ID sesuai dengan `item_executive_booking.xml`**
-//            meetingDate = itemView.findViewById(R.id.tvMeetingDate);
-            requesterName = itemView.findViewById(R.id.tvRequesterName);
+            requesterName = itemView.findViewById(R.id.tvRequester);
             location = itemView.findViewById(R.id.tvLocation);
             purpose = itemView.findViewById(R.id.tvPurpose);
-            startTime = itemView.findViewById(R.id.tvStartTime);
+            startTime = itemView.findViewById(R.id.tvTime);
             endTime = itemView.findViewById(R.id.tvEndTime);
             status = itemView.findViewById(R.id.tvStatus);
         }
 
-        public void bind(ExecutiveMeeting meeting) {
-            meetingTitle.setText(meeting.getTitle());
-            meetingDate.setText(meeting.getDate());
-            requesterName.setText(meeting.getRequesterName());
-            location.setText(meeting.getLocation());
-            purpose.setText(meeting.getPurposeName());
-            startTime.setText(meeting.getFormattedStartTime());
-            endTime.setText(meeting.getFormattedEndTime());
-            status.setText(meeting.getStatus());
+        public void bind(ExecutiveMeetingResponse.ExecutiveMeeting meeting) {
+            requesterName.setText("Requester: " + meeting.getRequesterName());
+            location.setText("Location: " + meeting.getLocation());
+            purpose.setText("Purpose: " + meeting.getPurposeName());
+            startTime.setText("Start: " + meeting.getFormattedStartTime());
+            endTime.setText("End: " + meeting.getFormattedEndTime());
+            status.setText("Status: " + meeting.getStatus());
         }
     }
 }

@@ -32,6 +32,17 @@ public class ExecutiveMeetingAdapter extends RecyclerView.Adapter<ExecutiveMeeti
         holder.tvPurpose.setText("Purpose: " + meeting.getPurposeName());
         holder.tvTime.setText("Time: " + meeting.getFormattedStartTime() + " - " + meeting.getFormattedEndTime());
         holder.tvStatus.setText("Status: " + meeting.getStatus());
+
+        holder.tvDepartments.setText("Departments: " +
+                (meeting.getParticipantsDepartments().isEmpty() ? "-" : String.join(", ", meeting.getParticipantsDepartments()))
+        );
+        holder.tvSubstitutes.setText("Substitutes: " +
+                (meeting.getSubstituteExecutive().isEmpty() ? "-" : String.join(", ", meeting.getSubstituteExecutive()))
+        );
+        holder.tvRoom.setText("Room: " + (meeting.getRoom() != null ? meeting.getRoom().getName() : "-"));
+        holder.tvVehicle.setText("Vehicle: " + (meeting.getVehicle() != null ? meeting.getVehicle().getName() + " (" + meeting.getVehicle().getDriverName() + ")" : "-"));
+        holder.tvObs.setText("Observations: " + meeting.getObs());
+
     }
 
     @Override
@@ -41,6 +52,7 @@ public class ExecutiveMeetingAdapter extends RecyclerView.Adapter<ExecutiveMeeti
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvRequester, tvLocation, tvPurpose, tvTime, tvStatus;
+        TextView tvDepartments, tvSubstitutes, tvRoom, tvVehicle, tvObs;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -49,6 +61,11 @@ public class ExecutiveMeetingAdapter extends RecyclerView.Adapter<ExecutiveMeeti
             tvPurpose = itemView.findViewById(R.id.tvPurpose);
             tvTime = itemView.findViewById(R.id.tvTime);
             tvStatus = itemView.findViewById(R.id.tvStatus);
+            tvDepartments = itemView.findViewById(R.id.tvDepartments);
+            tvSubstitutes = itemView.findViewById(R.id.tvSubstitutes);
+            tvRoom = itemView.findViewById(R.id.tvRoom);
+            tvVehicle = itemView.findViewById(R.id.tvVehicle);
+            tvObs = itemView.findViewById(R.id.tvObs);
         }
     }
 }

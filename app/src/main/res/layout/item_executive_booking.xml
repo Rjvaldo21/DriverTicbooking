@@ -46,5 +46,36 @@
             android:layout_height="wrap_content"
             android:text="Status: "/>
 
+        <TextView
+            android:id="@+id/tvDepartments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Departments: " />
+
+        <TextView
+            android:id="@+id/tvSubstitutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Substitutes: " />
+
+        <TextView
+            android:id="@+id/tvRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Room: " />
+
+        <TextView
+            android:id="@+id/tvVehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehicle: " />
+
+        <TextView
+            android:id="@+id/tvObs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observations: " />
+
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
