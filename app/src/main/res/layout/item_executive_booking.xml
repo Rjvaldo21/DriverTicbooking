@@ -2,80 +2,468 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
-    <LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+<!-- Summary section -->
+<LinearLayout
+    android:id="@+id/summarySection"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Location + Chevron -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
 
-        <TextView
-            android:id="@+id/tvRequester"
+        <LinearLayout
+            android:id="@+id/decsMap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivChevron">
+
+            <TextView
+                android:id="@+id/tvLocations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_bg"
+                android:textColor="@android:color/white"
+                android:text="Destination Address"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/inter_semibold"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp" />
+
+            <ImageView
+                android:id="@+id/ivMapIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="6dp"
+                android:src="@drawable/ic_map"
+                android:contentDescription="View on Map" />
+
+        </LinearLayout>
+
+        <!-- Chevron paling kanan -->
+        <ImageView
+            android:id="@+id/ivChevron"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_chevron_down"
+            android:contentDescription="Toggle Detail"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Purpose & Status -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="8dp">
+
+        <!-- Icon Kalender -->
+        <ImageView
+            android:id="@+id/ivCalendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Requester: "
-            android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:src="@drawable/date_ic"
+            android:contentDescription="Calendar Icon" />
 
-        <TextView
-            android:id="@+id/tvLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location: "/>
-
+        <!-- Purpose -->
         <TextView
             android:id="@+id/tvPurpose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Purpose: "/>
+            android:text="textPurpose"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="13sp"
+            android:textColor="@android:color/black" />
 
-        <TextView
-            android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time: "/>
-
+        <!-- Status -->
         <TextView
             android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status: "/>
+            android:background="@drawable/green_bg"
+            android:textColor="@android:color/white"
+            android:text="Approved"
+            android:padding="3dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="11sp" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvDepartments"
+    <!-- Dates & Time -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp">
+
+        <!-- Loron Komesa-->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Departments: " />
+            android:orientation="vertical"
+            android:layout_marginEnd="24dp">
 
-        <TextView
-            android:id="@+id/tvSubstitutes"
+            <TextView
+                android:id="@+id/labelDateSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loron"
+                android:textSize="11sp"
+                android:textColor="@color/gray999"
+                android:fontFamily="@font/inter" />
+
+            <TextView
+                android:id="@+id/tvDateSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                android:fontFamily="@font/inter" />
+
+        </LinearLayout>
+
+        <!-- Oras Komesa -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Substitutes: " />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvRoom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Room: " />
+            <TextView
+                android:id="@+id/labelStartTimeSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Komesa"
+                android:textSize="11sp"
+                android:textColor="@color/gray999"
+                android:fontFamily="@font/inter" />
 
-        <TextView
-            android:id="@+id/tvVehicle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vehicle: " />
-
-        <TextView
-            android:id="@+id/tvObs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Observations: " />
-
+            <TextView
+                android:id="@+id/tvStartTimeSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                android:fontFamily="@font/inter" />
+        </LinearLayout>
 
     </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Expandable section (Detail) -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandableContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/summarySection"
+            android:padding="12dp"
+            tools:ignore="MissingConstraints">
+
+            <!-- ROOM -->
+            <TextView
+                android:id="@+id/labelRoom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Room"
+                android:textSize="11sp"
+                android:textColor="@color/gray999"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRoom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelRoom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/labelUsers"
+                android:layout_marginEnd="16dp" />
+
+            <!-- USERS -->
+            <TextView
+                android:id="@+id/labelUsers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Participant Users"
+                android:textSize="11sp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toTopOf="@id/labelRoom"
+                app:layout_constraintStart_toEndOf="@id/tvRoom"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvUsers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelUsers"
+                app:layout_constraintStart_toStartOf="@id/labelUsers"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- VEHICLE -->
+            <TextView
+                android:id="@+id/labelVehicle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Vehicle"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvRoom"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvVehicle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelVehicle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/labelDepartments"
+                android:layout_marginEnd="16dp" />
+
+            <!-- DEPARTMENTS -->
+            <TextView
+                android:id="@+id/labelDepartments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Participant Department"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvUsers"
+                app:layout_constraintStart_toEndOf="@id/tvVehicle"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDepartments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelDepartments"
+                app:layout_constraintStart_toStartOf="@id/labelDepartments"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- LOCATION -->
+            <TextView
+                android:id="@+id/labelLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvVehicle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelLocation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/labelSubstitutes"
+                android:layout_marginEnd="16dp" />
+
+            <!-- SUBSTITUTE EXEC -->
+            <TextView
+                android:id="@+id/labelSubstitutes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Substitute Executive"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvDepartments"
+                app:layout_constraintStart_toEndOf="@id/tvLocation"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSubstitutes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelSubstitutes"
+                app:layout_constraintStart_toStartOf="@id/labelSubstitutes"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- DATE START -->
+            <TextView
+                android:id="@+id/labelStartDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Data Komesa"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvLocation"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelStartDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/labelEndDate"
+                android:layout_marginEnd="16dp" />
+
+            <!-- DATE END -->
+            <TextView
+                android:id="@+id/labelEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Data Remata"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvSubstitutes"
+                app:layout_constraintStart_toEndOf="@id/tvDate"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelEndDate"
+                app:layout_constraintStart_toStartOf="@id/labelEndDate"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- START TIME -->
+            <TextView
+                android:id="@+id/labelStartTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Oras Komesa"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvDate"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStartTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelStartTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/labelEndTime"
+                android:layout_marginEnd="16dp" />
+
+            <!-- END TIME -->
+            <TextView
+                android:id="@+id/labelEndTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Oras Remata"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvEndDate"
+                app:layout_constraintStart_toEndOf="@id/tvStartTime"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvEndTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelEndTime"
+                app:layout_constraintStart_toStartOf="@id/labelEndTime"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- REQUESTER -->
+            <TextView
+                android:id="@+id/labelRequester"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Requester Name"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvStartTime"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRequester"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelRequester"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- OBS -->
+            <TextView
+                android:id="@+id/labelObs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Obs"
+                android:textSize="11sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/gray999"
+                app:layout_constraintTop_toBottomOf="@id/tvRequester"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvObs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/labelObs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Lanjutkan elemen lain dari detail di sini sesuai struktur awal -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

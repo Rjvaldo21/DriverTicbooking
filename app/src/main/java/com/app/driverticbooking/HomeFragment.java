@@ -169,11 +169,12 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
             @Override
             public void onFailure(Call<ExecutiveMeetingResponse> call, Throwable t) {
                 Log.e("API Failure", "Request failed: " + t.getMessage());
-                Toast.makeText(requireContext(), "Failed to load executive meetings: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (isAdded()) {
+                    Toast.makeText(requireContext(), "Failed to load executive meetings: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-
 
     private void fetchBookings(TextView vehicleName, TextView vehicleType, TextView vehicleCapacity, TextView vehicleStatus) {
         String token = sessionManager.getToken();
@@ -230,27 +231,28 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Log.e("DEBUG API", "Error: " + t.getMessage());
-                requireActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                if (isAdded() && getActivity() != null) {
+                    requireActivity().runOnUiThread(() -> {
                         Toast.makeText(requireContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    });
+                }
             }
         });
     }
 
-        @Override
-        public void onMapIconClicked(String destinationAddress) {
+    @Override
+    public void onMapIconClicked(String destinationAddress) {
+        if (isAdded() && getActivity() != null) {
             DashboardFragment dashboardFragment = new DashboardFragment();
             Bundle bundle = new Bundle();
             bundle.putString("destination_address", destinationAddress);
             dashboardFragment.setArguments(bundle);
-            requireActivity().getSupportFragmentManager().beginTransaction()
-            .replace(R.id.fragment_container, dashboardFragment)
-            .addToBackStack(null)
-            .commit();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, dashboardFragment)
+                    .addToBackStack(null)
+                    .commit();
         }
+    }
 
     @Override
     public void onResume() {
@@ -366,7 +368,9 @@ public class HomeFragment extends Fragment implements VehicleBookingAdapter.OnMa
             @Override
             public void onFailure(Call<VehicleBookingResponse> call, Throwable t) {
                 Log.e("API Failure", "Request failed: " + t.getMessage());
-                Toast.makeText(requireContext(), "Failed to load data: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                if (isAdded()) {
+                    Toast.makeText(requireContext(), "Failed to load data: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

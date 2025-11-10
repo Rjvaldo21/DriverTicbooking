@@ -1,18 +1,17 @@
 package com.app.driverticbooking;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,7 +29,6 @@ import retrofit2.Retrofit;
 
 public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 
-
     private GoogleMap mMap;
 
     @Override
@@ -42,12 +40,10 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        fetchExecutiveMeetings();  // Panggil di sini
+        fetchExecutiveMeetings(view);
     }
 
-    // Method diletakkan DI LUAR onViewCreated
-    private void fetchExecutiveMeetings() {
+    private void fetchExecutiveMeetings(View view) {
         String token = new SessionManager(requireContext()).getToken();
 
         if (token == null || token.isEmpty()) {
@@ -65,7 +61,7 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
                     List<ExecutiveMeetingResponse.ExecutiveMeeting> meetings = response.body().getResults();
 
                     if (!meetings.isEmpty()) {
-                        RecyclerView recyclerExecutiveMeetings = requireView().findViewById(R.id.recyclerExecutiveMeetings);
+                        RecyclerView recyclerExecutiveMeetings = view.findViewById(R.id.recyclerExecutiveMeetings);
                         recyclerExecutiveMeetings.setLayoutManager(new LinearLayoutManager(getContext()));
                         recyclerExecutiveMeetings.setAdapter(new ExecutiveMeetingAdapter(meetings));
                     }
@@ -81,13 +77,13 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-
-//        SupportMapFragment mapFragment = (SupportMapFragment)
-//        getChildFragmentManager().findFragmentById(R.id.map);
-//
-//        if (mapFragment != null) {
-//            mapFragment.getMapAsync(this);
-//        }
+        // Optional map logic (currently commented out)
+        // SupportMapFragment mapFragment = (SupportMapFragment)
+        // getChildFragmentManager().findFragmentById(R.id.map);
+        //
+        // if (mapFragment != null) {
+        //     mapFragment.getMapAsync(this);
+        // }
     }
 
     @Override

@@ -49,7 +49,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MeetingViewHol
             requesterName = itemView.findViewById(R.id.tvRequester);
             location = itemView.findViewById(R.id.tvLocation);
             purpose = itemView.findViewById(R.id.tvPurpose);
-            startTime = itemView.findViewById(R.id.tvTime);
+            startTime = itemView.findViewById(R.id.tvStartTime);
             endTime = itemView.findViewById(R.id.tvEndTime);
             status = itemView.findViewById(R.id.tvStatus);
         }

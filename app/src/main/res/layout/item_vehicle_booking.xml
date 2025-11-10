@@ -48,7 +48,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/ivMapIcon"/>
 
-
                 <ImageView
                     android:id="@+id/ivMapIcon"
                     android:layout_width="20dp"
@@ -143,7 +142,6 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/llStartTimes"
