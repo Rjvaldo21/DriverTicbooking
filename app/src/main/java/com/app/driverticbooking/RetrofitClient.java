@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://ticbooking-system.apps06.tic.gov.tl/api/";
+    private static final String BASE_URL = "https://booking.tic.gov.tl/api/";
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {
