@@ -21,7 +21,7 @@ import okhttp3.*;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FCM_Service";
-    public static final String SERVER_URL = "https://ticbooking-system.apps06.tic.gov.tl/api/register-token/";
+    public static final String SERVER_URL = "https://booking.tic.gov.tl/api/register-token/";
     // URL API Django
 
     @Override
@@ -50,7 +50,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d("API Request", "📡 Mengirim Token FCM ke server...");
 
         if (token == null || token.trim().isEmpty()) {
-            Log.e("API Request", "❌ Token FCM kosong, tidak dikirim ke server!");
+            Log.e("API sendTokenToServer", "❌ Token FCM kosong, tidak dikirim ke server!");
             return;
         }
 
@@ -58,7 +58,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String USER_AUTH_TOKEN = sharedPreferences.getString("auth_token", "");
 
         if (USER_AUTH_TOKEN == null || USER_AUTH_TOKEN.trim().isEmpty()) {
-            Log.e("API Request", "❌ Gagal mengirim token FCM: Token autentikasi tidak ditemukan!");
+            Log.e("API sendTokenToServer", "❌ Gagal mengirim token FCM: Token autentikasi tidak ditemukan!");
             return;
         }
 
@@ -74,7 +74,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             jsonBody.put("data", dataObject);
 
         } catch (JSONException e) {
-            Log.e("API Request", "❌ JSON Error: " + e.getMessage());
+            Log.e("API sendTokenToServer", "❌ JSON Error: " + e.getMessage());
             return;
         }
 
@@ -97,14 +97,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             @Override
             public void onResponse(Call call, Response response) {
                 try {
-                    Log.d(TAG, "🔄 Respon Server: " + response.code());
+                    Log.d(TAG, "🔄 Respon sendTokenToServer: " + response.code());
 
                     if (response.body() != null) {
                         String responseBody = response.body().string();
                         Log.d(TAG, "📩 Body Respon: " + responseBody);
                     }
                 } catch (IOException e) {
-                    Log.e(TAG, "❌ Error membaca respon: " + e.getMessage());
+                    Log.e(TAG, "❌ Error membaca sendTokenToServer: " + e.getMessage());
                 } finally {
                     // Tutup response untuk hindari memory leak
                     if (response != null) {
